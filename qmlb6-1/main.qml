@@ -43,4 +43,43 @@ Window {
             }
         }
     }
+
+    Rectangle {
+        id: myShape2
+        color: "red"
+        width: 200
+        height: 200
+        anchors.centerIn: parent
+
+        Text {
+            id: title
+            text:  Math.round(parent.rotation)
+            anchors.centerIn: parent
+            font.bold: true
+            font.pointSize: 65
+            color: "darkred"
+        }
+
+        RotationAnimation {
+            id: animation
+            target: myShape2
+            loops: Animation.Infinite
+            from: myShape2.rotation
+            to: 360
+            direction: RotationAnimation.Clockwise
+            duration: 3000
+            running: true
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                if (animation.paused) {
+                    animation.resume()
+                } else {
+                    animation.pause()
+                }
+            }
+        }
+    }
 }
