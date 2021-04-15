@@ -38,6 +38,7 @@ Window {
                 duration: 2000
                 running: true
             }
+
             ScaleAnimator {
                 id:aniGrow
                 target: myShape
@@ -45,6 +46,21 @@ Window {
                 to: 1
                 duration: 2000
                 running: true
+            }
+
+            OpacityAnimator {
+                target:myShape
+                from: 0
+                to: 1
+                duration: 2000
+            }
+
+            OpacityAnimator {
+                target:myShape
+                from: 1
+                to: 0
+                duration: 2000
+
             }
         }
     }
