@@ -16,6 +16,25 @@ int Test::number()
        return 42;
 }
 
+void Test::work(QVariant data)
+{
+    bool ok;
+    int numIn = data.toInt(&ok);
+    int numOut = 0;
+
+    if (!ok) {
+        qWarning() << "not a valid number";
+    } else {
+        int numRand = QRandomGenerator::global()->bounded(100);
+        numOut = numIn * numRand;
+        qInfo() << "in : " << numIn;
+        qInfo() << "random : " << numRand;
+        qInfo() << "out : " << numOut;
+    }
+
+    emit status(QVariant(numOut));
+}
+
 void Test::timeout()
 {
     m_Display = QDateTime::currentDateTime().toString();

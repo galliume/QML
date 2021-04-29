@@ -17,8 +17,11 @@ int main(int argc, char *argv[])
 
 
     //add to the route context
-    Test test;
-    engine.rootContext()->setContextProperty("testing", &test);
+    //Test test;
+    //engine.rootContext()->setContextProperty("testing", &test);
+
+    //register c++ class
+    qmlRegisterType<Test>("com.company.test", 1, 0, "Test");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

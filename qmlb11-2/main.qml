@@ -2,6 +2,9 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.3
 
+//import custom c++ class cf main
+import com.company.test 1.0
+
 Window {
     id: window
     visible: true
@@ -9,8 +12,14 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
+    //use custom c++ class
+    Test {
+        id: test
+        onStatus: lblStatus.text = data;
+    }
+
     Connections {
-        target: testing
+        target: test
         onNotice: {
             console.log("Slot called from C++")
             lblStatus.text = data
@@ -49,13 +58,22 @@ Window {
             Button {
                 id: btnStart
                 text: qsTr("Start")
-                onClicked: testing.start()
+                onClicked: test.start()
             }
 
             Button {
                 id: btnStop
                 text: qsTr("Stop")
-                onClicked: testing.stop()
+                onClicked: test.stop()
+            }
+
+            Button {
+                id: btnClickMe
+                text: qsTr("Clik me")
+                onClicked: {
+                    var num = Math.round(Math.random() * 100)
+                    test.work(num)
+                }
             }
         }
     }

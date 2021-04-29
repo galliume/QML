@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QDateTime>
 #include <QVariant>
+#include <QRandomGenerator>
 
 class Test : public QObject
 {
@@ -15,9 +16,8 @@ public:
 
     int number();
 
-
 signals:
-
+    void status(QVariant data);
     void notice(QVariant data);
 
 private slots:
@@ -27,6 +27,7 @@ public slots:
     void bark();
     void start();
     void stop();
+    void work(QVariant data);
 
 private:
     QTimer m_Timer;
